@@ -477,3 +477,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+client-app/README.md
+client-app/public/vite.svg
+client-app/src/assets/react.svg
