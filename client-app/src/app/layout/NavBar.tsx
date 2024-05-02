@@ -7,7 +7,7 @@ const NavBar: React.FC = () => {
       <Container>
         <Menu.Item header>
           <img
-            src="/Assets/logo.png"
+            src="/assets/logo.png"
             alt="logo"
             style={{ marginRight: "10px" }}
           />
