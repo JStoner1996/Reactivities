@@ -13,6 +13,7 @@ interface IActivityDashboardProps {
   cancelSelectActivity: () => void;
   openForm: (id: string) => void;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
 const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
@@ -23,6 +24,7 @@ const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
   editMode,
   openForm,
   closeForm,
+  createOrEdit,
 }: IActivityDashboardProps) => {
   return (
     <Grid>
@@ -38,7 +40,11 @@ const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
           />
         )}
         {editMode && (
-          <ActivityForm activity={selectedActivity} closeForm={closeForm} />
+          <ActivityForm
+            activity={selectedActivity}
+            closeForm={closeForm}
+            createOrEdit={createOrEdit}
+          />
         )}
       </Grid.Column>
     </Grid>

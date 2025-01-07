@@ -5,11 +5,13 @@ import { Activity } from "../../../app/models/activity";
 interface ActivityFormProps {
   activity: Activity | undefined;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
 const ActivityForm: React.FC<ActivityFormProps> = ({
   activity: selectedActivity,
   closeForm,
+  createOrEdit,
 }) => {
   const initialState = selectedActivity ?? {
     id: "",
@@ -25,6 +27,7 @@ const ActivityForm: React.FC<ActivityFormProps> = ({
 
   const handleSubmit = () => {
     console.log(activity);
+    createOrEdit(activity);
   };
 
   const handleInputChange = (
