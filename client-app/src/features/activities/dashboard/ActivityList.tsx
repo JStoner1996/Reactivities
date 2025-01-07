@@ -5,11 +5,13 @@ import { Button, Item, Label, Segment } from "semantic-ui-react";
 interface IActivityListProps {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }
 
 const ActivityList: React.FC<IActivityListProps> = ({
   activities,
   selectActivity,
+  deleteActivity,
 }: IActivityListProps) => {
   return (
     <Segment>
@@ -34,6 +36,12 @@ const ActivityList: React.FC<IActivityListProps> = ({
                   content="View"
                   color="blue"
                   onClick={() => selectActivity(activity.id)}
+                />
+                <Button
+                  floated="right"
+                  content="Delete"
+                  color="red"
+                  onClick={() => deleteActivity(activity.id)}
                 />
                 <Label basic content={activity.category} />
               </Item.Extra>
