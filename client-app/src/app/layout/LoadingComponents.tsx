@@ -11,7 +11,7 @@ const LoadingComponent: React.FC<LoadingComponentProps> = ({
   content = "Loading...",
 }) => {
   return (
-    <Dimmer active={true} inveterted={inverted}>
+    <Dimmer active={true} inverted={inverted}>
       <Loader content={content} />
     </Dimmer>
   );
