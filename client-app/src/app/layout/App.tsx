@@ -15,6 +15,7 @@ function App() {
   >(undefined);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     axios;
@@ -45,18 +46,30 @@ function App() {
   const handleCloseForm = () => setEditMode(false);
 
   const handleCreateOrEditActivity = (activity: Activity) => {
-    activity.id
-      ? setActivities([
-          ...activities.filter((x) => x.id !== activity.id),
-          activity,
-        ])
-      : setActivities([...activities, { ...activity, id: uuid() }]);
-    setEditMode(false);
-    setSelectedActivity(activity);
+    setSubmitting(true);
+    const saveActivity = activity.id
+      ? agent.Activities.update(activity).then(() => {
+          setActivities(
+            activities.map((x) => (x.id === activity.id ? activity : x))
+          );
+        })
+      : agent.Activities.create({ ...activity, id: uuid() }).then(() => {
+          setActivities([...activities, activity]);
+        });
+
+    saveActivity.finally(() => {
+      setSelectedActivity(activity);
+      setEditMode(false);
+      setSubmitting(false);
+    });
   };
 
   const handleDeleteActivity = (id: string) => {
-    setActivities([...activities.filter((x) => x.id !== id)]);
+    setSubmitting(true);
+    agent.Activities.delete(id).then(() => {
+      setActivities([...activities.filter((x) => x.id !== id)]);
+      setSubmitting(false);
+    });
   };
 
   if (loading) return <LoadingComponent />;
@@ -75,6 +88,7 @@ function App() {
           closeForm={handleCloseForm}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
+          submitting={submitting}
         />
       </Container>
     </>

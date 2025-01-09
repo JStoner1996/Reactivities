@@ -4,12 +4,14 @@ import { Activity } from "../../../app/models/activity";
 
 interface ActivityFormProps {
   activity: Activity | undefined;
+  submitting: boolean;
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
 }
 
 const ActivityForm: React.FC<ActivityFormProps> = ({
   activity: selectedActivity,
+  submitting,
   closeForm,
   createOrEdit,
 }) => {
@@ -77,7 +79,13 @@ const ActivityForm: React.FC<ActivityFormProps> = ({
           value={activity.venue}
           onChange={handleInputChange}
         />
-        <Button floated="right" positive type="submit" content="Submit" />
+        <Button
+          floated="right"
+          positive
+          type="submit"
+          content="Submit"
+          loading={submitting}
+        />
         <Button
           floated="right"
           type="button"

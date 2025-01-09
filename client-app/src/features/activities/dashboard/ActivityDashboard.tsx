@@ -9,6 +9,7 @@ interface IActivityDashboardProps {
   activities: Activity[];
   selectedActivity: Activity | undefined;
   editMode: boolean;
+  submitting: boolean;
   selectActivity: (id: string) => void;
   cancelSelectActivity: () => void;
   openForm: (id: string) => void;
@@ -20,9 +21,10 @@ interface IActivityDashboardProps {
 const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
   activities,
   selectedActivity,
+  editMode,
+  submitting,
   selectActivity,
   cancelSelectActivity,
-  editMode,
   openForm,
   closeForm,
   createOrEdit,
@@ -35,6 +37,7 @@ const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
           activities={activities}
           selectActivity={selectActivity}
           deleteActivity={deleteActivity}
+          submitting={submitting}
         />
       </Grid.Column>
       <Grid.Column width="6">
@@ -48,6 +51,7 @@ const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
         {editMode && (
           <ActivityForm
             activity={selectedActivity}
+            submitting={submitting}
             closeForm={closeForm}
             createOrEdit={createOrEdit}
           />
