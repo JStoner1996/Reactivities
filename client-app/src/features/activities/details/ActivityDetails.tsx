@@ -8,19 +8,19 @@ import {
   CardMeta,
   Image,
 } from "semantic-ui-react";
-import { Activity } from "../../../app/models/activity";
+import { useStore } from "../../../app/stores/store";
+import LoadingComponent from "../../../app/layout/LoadingComponents";
 
-interface IActivityDetailsProps {
-  activity: Activity;
-  cancelSelectedActivity: () => void;
-  openForm: (id: string) => void;
-}
+const ActivityDetails: React.FC = () => {
+  const { activityStore } = useStore();
+  const {
+    selectedActivity: activity,
+    openForm,
+    cancelSelectedActivity: cancelSelectedAcitivity,
+  } = activityStore;
 
-const ActivityDetails: React.FC<IActivityDetailsProps> = ({
-  activity,
-  cancelSelectedActivity,
-  openForm,
-}: IActivityDetailsProps) => {
+  if (!activity) return <LoadingComponent />;
+
   return (
     <Card fluid>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -43,7 +43,7 @@ const ActivityDetails: React.FC<IActivityDetailsProps> = ({
             basic
             colour="grey"
             content="Cancel"
-            onClick={cancelSelectedActivity}
+            onClick={cancelSelectedAcitivity}
           />
         </Button.Group>
       </CardContent>

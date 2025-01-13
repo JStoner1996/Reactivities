@@ -1,20 +1,20 @@
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { useStore } from "../../../app/stores/store";
 
 interface ActivityFormProps {
-  activity: Activity | undefined;
   submitting: boolean;
-  closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
 }
 
 const ActivityForm: React.FC<ActivityFormProps> = ({
-  activity: selectedActivity,
   submitting,
-  closeForm,
   createOrEdit,
 }) => {
+  const { activityStore } = useStore();
+  const { selectedActivity, closeForm } = activityStore;
+
   const initialState = selectedActivity ?? {
     id: "",
     title: "",
