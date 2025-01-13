@@ -10,14 +10,12 @@ import { observer } from "mobx-react-lite";
 interface IActivityDashboardProps {
   activities: Activity[];
   submitting: boolean;
-  createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
 }
 
 const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
   activities,
   submitting,
-  createOrEdit,
   deleteActivity,
 }: IActivityDashboardProps) => {
   const { activityStore } = useStore();
@@ -35,9 +33,7 @@ const ActivityDashboard: React.FC<IActivityDashboardProps> = ({
       </Grid.Column>
       <Grid.Column width="6">
         {selectedActivity && !editMode && <ActivityDetails />}
-        {editMode && (
-          <ActivityForm submitting={submitting} createOrEdit={createOrEdit} />
-        )}
+        {editMode && <ActivityForm />}
       </Grid.Column>
     </Grid>
   );
