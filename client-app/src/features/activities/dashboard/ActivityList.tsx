@@ -1,20 +1,11 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Activity } from "../../../app/models/activity";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-interface IActivityListProps {
-  activities: Activity[];
-  submitting: boolean;
-  deleteActivity: (id: string) => void;
-}
-
-const ActivityList: React.FC<IActivityListProps> = ({
-  activities,
-  submitting,
-  deleteActivity,
-}: IActivityListProps) => {
+const ActivityList: React.FC = () => {
   const { activityStore } = useStore();
+  const { activities, loading, deleteActivity } = activityStore;
 
   const [target, setTarget] = useState<string>("");
 
@@ -55,7 +46,7 @@ const ActivityList: React.FC<IActivityListProps> = ({
                   floated="right"
                   content="Delete"
                   color="red"
-                  loading={submitting && target === activity.id}
+                  loading={loading && target === activity.id}
                   onClick={(e) => handleDeleteActivity(e, activity.id)}
                 />
                 <Label basic content={activity.category} />
@@ -68,4 +59,4 @@ const ActivityList: React.FC<IActivityListProps> = ({
   );
 };
 
-export default ActivityList;
+export default observer(ActivityList);
