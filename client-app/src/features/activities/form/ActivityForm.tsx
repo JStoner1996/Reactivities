@@ -6,13 +6,8 @@ import { observer } from "mobx-react-lite";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
-  const {
-    createActivity,
-    updateActivity,
-    selectedActivity,
-    closeForm,
-    loading,
-  } = activityStore;
+  const { createActivity, updateActivity, selectedActivity, loading } =
+    activityStore;
 
   const initialState = selectedActivity ?? {
     id: "",
@@ -84,12 +79,7 @@ const ActivityForm: React.FC = () => {
           content="Submit"
           loading={loading}
         />
-        <Button
-          floated="right"
-          type="button"
-          content="Cancel"
-          onClick={closeForm}
-        />
+        <Button floated="right" type="button" content="Cancel" />
       </Form>
     </Segment>
   );
