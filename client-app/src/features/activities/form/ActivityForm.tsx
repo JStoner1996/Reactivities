@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
+import { useNavigate, useParams } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import { Button, Form, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { useStore } from "../../../app/stores/store";
-import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 
 const ActivityForm: React.FC = () => {
@@ -18,6 +19,8 @@ const ActivityForm: React.FC = () => {
   } = activityStore;
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [activity, setActivity] = useState<Activity>({
     id: "",
@@ -34,7 +37,16 @@ const ActivityForm: React.FC = () => {
   }, [id, loadActivity]);
 
   const handleSubmit = () => {
-    activity.id ? updateActivity(activity) : createActivity(activity);
+    if (!activity.id) {
+      activity.id == uuid();
+      createActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`)
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`)
+      );
+    }
   };
 
   const handleInputChange = (
