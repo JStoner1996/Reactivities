@@ -11,7 +11,7 @@ import {
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponents";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ActivityDetails: React.FC = () => {
   const { activityStore } = useStore();
@@ -42,8 +42,20 @@ const ActivityDetails: React.FC = () => {
       </CardContent>
       <CardContent extra>
         <Button.Group widths="2">
-          <Button basic colour="blue" content="Edit" />
-          <Button basic colour="grey" content="Cancel" />
+          <Button
+            as={Link}
+            to={`/manage/${activity.id}`}
+            basic
+            colour="blue"
+            content="Edit"
+          />
+          <Button
+            as={Link}
+            to={`/activities`}
+            basic
+            colour="grey"
+            content="Cancel"
+          />
         </Button.Group>
       </CardContent>
     </Card>

@@ -1,15 +1,25 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { useParams } from "react-router-dom";
+import LoadingComponent from "../../../app/layout/LoadingComponents";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
-  const { createActivity, updateActivity, selectedActivity, loading } =
-    activityStore;
+  const {
+    createActivity,
+    updateActivity,
+    loadActivity,
 
-  const initialState = selectedActivity ?? {
+    loading,
+    loadingInitial,
+  } = activityStore;
+
+  const { id } = useParams();
+
+  const [activity, setActivity] = useState<Activity>({
     id: "",
     title: "",
     category: "",
@@ -17,9 +27,11 @@ const ActivityForm: React.FC = () => {
     date: "",
     city: "",
     venue: "",
-  };
+  });
 
-  const [activity, setActivity] = useState<Activity>(initialState);
+  useEffect(() => {
+    if (id) loadActivity(id).then((activity) => setActivity(activity!));
+  }, [id, loadActivity]);
 
   const handleSubmit = () => {
     activity.id ? updateActivity(activity) : createActivity(activity);
@@ -31,6 +43,8 @@ const ActivityForm: React.FC = () => {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   };
+
+  if (loadingInitial) return <LoadingComponent content="Loading Activity..." />;
 
   return (
     <Segment clearing>
