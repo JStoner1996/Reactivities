@@ -1,18 +1,9 @@
 import React, { useEffect } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardMeta,
-  Grid,
-  Image,
-} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponents";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ActivityDetailsHeader from "./ActivityDetailsHeader";
 import ActivityDetailsChat from "./ActivityDetailsChat";
 import ActivityDetailsInfo from "./ActivityDetailsInfo";
