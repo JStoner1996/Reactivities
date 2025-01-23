@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Activity } from "../models/activity";
 import { toast } from "react-toastify";
+import { router } from "../router/Routes";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -29,6 +30,7 @@ axios.interceptors.response.use(
         toast.error("forbidden");
         break;
       case 404:
+        router.navigate("/not-found");
         toast.error("not found");
         break;
       case 500:
