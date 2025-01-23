@@ -27,7 +27,6 @@ namespace Application.Activities
 
                 _dataContext.Remove(activity);
 
-
                 var result = await _dataContext.SaveChangesAsync() > 0;
                 // SaveChangesAsync returns the number of state entries written to the database. 
                 // We check that the number of changes is greater than 0.
