@@ -3,11 +3,14 @@ import { observer } from "mobx-react-lite";
 import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./NavBar";
 import HomePage from "../../features/home/HomePage";
+import { ToastContainer } from "react-toastify";
 
-function App() {
+const App: React.FC = () => {
   const location = useLocation();
+
   return (
     <>
+      <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       {location.pathname === "/" ? (
         <HomePage />
       ) : (
@@ -20,6 +23,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default observer(App);
