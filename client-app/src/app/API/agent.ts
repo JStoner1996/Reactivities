@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { Activity } from "../models/activity";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
+import { store } from "../stores/store";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -44,7 +45,8 @@ axios.interceptors.response.use(
         toast.error("not found");
         break;
       case 500:
-        toast.error("server error");
+        store.commonStore.setServerError(data);
+        router.navigate("/server-error");
         break;
     }
 
