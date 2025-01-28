@@ -9,6 +9,7 @@ import LoadingComponent from "../../../app/layout/LoadingComponents";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../../app/common/form/TextInput";
+import TextArea from "../../../app/common/form/TextArea";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
@@ -81,7 +82,7 @@ const ActivityForm: React.FC = () => {
         {({ handleSubmit }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
             <TextInput name="title" placeholder="Title" />
-            <TextInput placeholder="Description" name="description" />
+            <TextArea placeholder="Description" name="description" rows={3} />
             <TextInput placeholder="Category" name="category" />
             <TextInput placeholder="Date" name="date" />
             <TextInput placeholder="City" name="city" />
