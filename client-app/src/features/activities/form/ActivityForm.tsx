@@ -8,7 +8,7 @@ import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponents";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import TextInput from "../../../common/form/TextInput";
+import TextInput from "../../../app/form/TextInput";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
