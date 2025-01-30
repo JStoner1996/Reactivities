@@ -10,6 +10,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
+import SelectInput from "../../../app/common/form/SelectInput";
+import { categoryOptions } from "../../../app/common/form/options/categoryOptions";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
@@ -17,7 +19,6 @@ const ActivityForm: React.FC = () => {
     createActivity,
     updateActivity,
     loadActivity,
-
     loading,
     loadingInitial,
   } = activityStore;
@@ -82,11 +83,15 @@ const ActivityForm: React.FC = () => {
         {({ handleSubmit }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
             <TextInput name="title" placeholder="Title" />
-            <TextArea placeholder="Description" name="description" rows={3} />
-            <TextInput placeholder="Category" name="category" />
-            <TextInput placeholder="Date" name="date" />
-            <TextInput placeholder="City" name="city" />
-            <TextInput placeholder="Venue" name="venue" />
+            <TextArea name="description" placeholder="Description" rows={3} />
+            <SelectInput
+              name="category"
+              placeholder="Category"
+              options={categoryOptions}
+            />
+            <TextInput name="date" placeholder="Date" />
+            <TextInput name="city" placeholder="City" />
+            <TextInput name="venue" placeholder="Venue" />
             <Button
               floated="right"
               positive
