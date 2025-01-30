@@ -12,6 +12,7 @@ import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
 import { categoryOptions } from "../../../app/common/form/options/categoryOptions";
+import DateInput from "../../../app/common/form/DateInput";
 
 const ActivityForm: React.FC = () => {
   const { activityStore } = useStore();
@@ -32,7 +33,7 @@ const ActivityForm: React.FC = () => {
     title: "",
     category: "",
     description: "",
-    date: "",
+    date: null,
     city: "",
     venue: "",
   });
@@ -89,7 +90,13 @@ const ActivityForm: React.FC = () => {
               placeholder="Category"
               options={categoryOptions}
             />
-            <TextInput name="date" placeholder="Date" />
+            <DateInput
+              name="date"
+              placeholderText="Date"
+              showTimeSelect
+              timeCaption="Time"
+              dateFormat={"MMMM d, yyyy h:mm aa"}
+            />
             <TextInput name="city" placeholder="City" />
             <TextInput name="venue" placeholder="Venue" />
             <Button
