@@ -14,7 +14,8 @@ const ActivityDashboard: React.FC = () => {
     if (activityRegistry.size <= 2) loadActivities();
   }, [activityRegistry.size, loadActivities]);
 
-  if (activityStore.loadingInitial) return <LoadingComponent />;
+  if (activityStore.loadingInitial)
+    return <LoadingComponent content="Loading activities..." />;
 
   return (
     <Grid>
