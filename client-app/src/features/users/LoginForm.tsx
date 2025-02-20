@@ -1,6 +1,6 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import TextInput from "../../app/common/form/TextInput";
-import { Button, Label } from "semantic-ui-react";
+import { Button, Header, Label } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 
@@ -18,10 +18,14 @@ function LoginForm(): JSX.Element {
     >
       {({ handleSubmit, isSubmitting, errors }) => (
         <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
+          <Header
+            as="h2"
+            content="Login to Reactivities"
+            color="teal"
+            textAlign="center"
+          />
           <TextInput placeholder="email" name="email" />
-          <>bob@test.com - FOR TESTING PURPOSES</>
           <TextInput placeholder="password" name="password" type="password" />
-          <>Pa$$w0rd - FOR TESTING PURPOSES</>
           <ErrorMessage
             name="error"
             render={() => (
