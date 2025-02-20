@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import ActivityDetailsChat from "./ActivityDetailsChat";
 import ActivityDetailsInfo from "./ActivityDetailsInfo";
 import ActivityDetailsSidebar from "./ActivityDetailsSidebar";
 
-const ActivityDetails: React.FC = () => {
+function ActivityDetails(): JSX.Element {
   const { activityStore } = useStore();
   const {
     selectedActivity: activity,
@@ -38,6 +38,6 @@ const ActivityDetails: React.FC = () => {
       </Grid.Column>
     </Grid>
   );
-};
+}
 
 export default observer(ActivityDetails);

@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { Container, Header, Segment } from "semantic-ui-react";
 
-const ServerError: React.FC = () => {
+function ServerError(): JSX.Element {
   const { commonStore } = useStore();
   return (
     <Container>
@@ -16,6 +16,6 @@ const ServerError: React.FC = () => {
       )}
     </Container>
   );
-};
+}
 
 export default observer(ServerError);

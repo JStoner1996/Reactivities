@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 import ActivityListItem from "./ActivityListItem";
 
-const ActivityList: React.FC = () => {
+function ActivityList(): JSX.Element {
   const { activityStore } = useStore();
   const { groupedActivities } = activityStore;
 
@@ -23,6 +23,6 @@ const ActivityList: React.FC = () => {
       ))}
     </>
   );
-};
+}
 
 export default observer(ActivityList);

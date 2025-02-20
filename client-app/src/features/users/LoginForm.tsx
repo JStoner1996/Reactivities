@@ -4,7 +4,7 @@ import { Button, Label } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 
-const LoginForm: React.FC = () => {
+function LoginForm(): JSX.Element {
   const { userStore } = useStore();
 
   return (
@@ -44,6 +44,6 @@ const LoginForm: React.FC = () => {
       )}
     </Formik>
   );
-};
+}
 
 export default observer(LoginForm);

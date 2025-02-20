@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Header, Icon, Segment } from "semantic-ui-react";
 
-const NotFound: React.FC = () => {
+function NotFound(): JSX.Element {
   return (
     <Segment placeholder>
       <Header icon>
@@ -16,6 +16,6 @@ const NotFound: React.FC = () => {
       </Segment.Inline>
     </Segment>
   );
-};
+}
 
 export default NotFound;

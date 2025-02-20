@@ -1,8 +1,7 @@
-import React from "react";
 import Calendar from "react-calendar";
 import { Header, Menu } from "semantic-ui-react";
 
-const ActivityFilters: React.FC = () => {
+function ActivityFilters(): JSX.Element {
   return (
     <>
       <Menu vertical size="large" style={{ width: "100%", marginTop: 28 }}>
@@ -15,6 +14,6 @@ const ActivityFilters: React.FC = () => {
       <Calendar />
     </>
   );
-};
+}
 
 export default ActivityFilters;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -14,7 +14,7 @@ import SelectInput from "../../../app/common/form/SelectInput";
 import { categoryOptions } from "../../../app/common/form/options/categoryOptions";
 import DateInput from "../../../app/common/form/DateInput";
 
-const ActivityForm: React.FC = () => {
+function ActivityForm(): JSX.Element {
   const { activityStore } = useStore();
   const {
     createActivity,
@@ -114,6 +114,6 @@ const ActivityForm: React.FC = () => {
       </Formik>
     </Segment>
   );
-};
+}
 
 export default observer(ActivityForm);

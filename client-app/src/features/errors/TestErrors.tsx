@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import ValidationError from "./ValidationError";
 
-const TestErrors: React.FC = () => {
+function TestErrors(): JSX.Element {
   const baseUrl = "http://localhost:5000/api/";
   const [errors, setErrors] = useState(null);
 
@@ -77,6 +77,6 @@ const TestErrors: React.FC = () => {
       {errors && <ValidationError errors={errors} />}
     </>
   );
-};
+}
 
 export default TestErrors;

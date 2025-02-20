@@ -1,8 +1,7 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
 import { Segment, Header, Comment, Form, Button } from "semantic-ui-react";
 
-const ActivityDetailsChat: React.FC = () => {
+function ActivityDetailsChat(): JSX.Element {
   return (
     <>
       <Segment
@@ -57,6 +56,6 @@ const ActivityDetailsChat: React.FC = () => {
       </Segment>
     </>
   );
-};
+}
 
 export default observer(ActivityDetailsChat);

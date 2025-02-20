@@ -1,9 +1,8 @@
-import React from "react";
 import { Segment, List, Label, Item, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
-const ActivityDetailsSidebar: React.FC = () => {
+function ActivityDetailsSidebar(): JSX.Element {
   return (
     <>
       <Segment
@@ -57,6 +56,6 @@ const ActivityDetailsSidebar: React.FC = () => {
       </Segment>
     </>
   );
-};
+}
 
 export default observer(ActivityDetailsSidebar);
